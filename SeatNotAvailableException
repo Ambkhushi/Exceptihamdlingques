@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+class SeatNotAvailableException extends Exception {
+    public SeatNotAvailableException(String message) {
+        super(message);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of rows and columns of the show:");
+        int n = sc.nextInt();
+        int[][] seats = new int[n][n];
+        System.out.println("Enter the number of seats to be booked:");
+        int numSeatsToBook = sc.nextInt();
+        for (int i = 0; i < numSeatsToBook; i++) {
+            System.out.println("Enter the seat number " + (i + 1));
+            int seatNumber = sc.nextInt();
+            try {
+                if (seatNumber < 0 || seatNumber >= n * n) {
+                    throw new ArrayIndexOutOfBoundsException();
+                }
+                int row = seatNumber / n;
+                int col = seatNumber % n;
+
+                if (seats[row][col] == 1) {
+                    throw new SeatNotAvailableException("Already Booked");
+                }
+
+                seats[row][col] = 1;
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("java.lang.ArrayIndexOutOfBoundsException: " + seatNumber);
+            } catch (SeatNotAvailableException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        System.out.println("The seats booked are:");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.print(seats[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
