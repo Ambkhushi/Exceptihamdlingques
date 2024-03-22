@@ -1,0 +1,36 @@
+import java.util.Scanner;
+class Main{
+  public static void main (String[]args) {
+	Scanner sc = new Scanner (System.in);
+	int[] seats = new int[100];
+	  System.out.print ("Enter the number of seats you want to book: ");
+	int numSeats = sc.nextInt ();
+	for (int i = 0; i < numSeats; i++)
+	  {	System.out.print ("Enter seat number " + (i + 1) + ": ");
+		int seatNumber = sc.nextInt ();
+		
+		  try{
+		   if (seats[seatNumber - 1] == 1)
+			{
+			  System.out.println ("Seat is already booked. Please choose another seat.");
+
+			}
+		  else	{
+			  seats[seatNumber - 1] = 1;
+			}
+		}
+		catch (ArrayIndexOutOfBoundsException e)
+		{
+		  System.out.
+			println ("java.lang.ArrayIndexOutOfBoundsException: 100");
+		}
+	  }
+	System.out.println ("The seats booked are:");
+	for (int i = 0; i < seats.length; i++) {
+		if (seats[i] == 1)
+		  {
+			System.out.println (i + 1);
+		  }
+	  }
+  }
+}
