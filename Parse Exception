@@ -1,0 +1,18 @@
+import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+class Main{
+  public static void main (String[]args) {
+	Scanner sc = new Scanner (System.in);
+	 SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss"); 
+       System.out.println("Enter the stage event start date and end date");
+       String startDate = sc.nextLine();
+       String endDate = sc.nextLine();
+       try {
+           dateFormat.parse(startDate);
+           dateFormat.parse(endDate);
+       } catch (ParseException e) {
+           System.out.println("Input dates should be in the format dd-MM-yyyy HH:mm:ss");
+       }
+  }
+}
